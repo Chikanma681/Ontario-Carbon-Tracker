@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{%block title%}CFP{%endblock%}
+{%block header%}Carbon Tracker{%endblock%}
+
+{%block content%}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %} 
+<form method = 'POST'>  
+    <div class="container">   
+        <label>Electricity in kWh : </label>   
+        <input type="text"  name="elec" required>    
+        <p><label>Heating Oil : </label><input type="text"  name="oil" required>  </p>  
+        <p><label>Natural Gas : </label><input type="text"  name="natgas" required>  </p>  
+        <p><label>Kilometres travelled by Car : </label><input type="text"  name="km" required>  </p>   
+        <div style="padding-left: 12px">
+            <button type="submit" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Submit!</button> 
+        </div>
+        {% if ee  %} 
+        <h1 class="w3-margin w3-jumbo" id = 'my_header'>Results</h1>
+        <div class="w3-margin w3-large">
+            <p>Electricity Emissions are:   {{ee}}  kg co2e</p>
+            <p>'Heating Emissions are:  {{he}}  kg co2e</p>
+            <p>'Driving Emissions are:   {{ce}}  kg co2e</p>
+        </div>
+        {%endif %}
+    </div>  
+{%endblock%}
